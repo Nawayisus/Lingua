@@ -119,13 +119,14 @@ async function startProcessing(file) {
     const config = {
         sourceLang: UI.sourceLang.value,
         targetLang: UI.targetLang.value,
+        outputFormat: document.getElementById('outputFormat').value,
         provider: {
             type: UI.providerSelect.options[UI.providerSelect.selectedIndex]?.dataset.type || 'libretranslate',
             url: UI.providerSelect.options[UI.providerSelect.selectedIndex]?.dataset.url || 'https://libretranslate.de'
         }
     };
 
-    log(`Configuración: ${config.sourceLang} -> ${config.targetLang} via ${config.provider.type}`);
+    log(`Configuración: ${config.sourceLang} -> ${config.targetLang} (${config.outputFormat}) via ${config.provider.type}`);
 
     // Call the Translator Engine (Defined in translator.js)
     try {
@@ -163,8 +164,17 @@ function showResult(blob, originalName) {
     const url = URL.createObjectURL(blob);
     UI.downloadBtn.href = url;
 
-    // Prefix filename with 'translated_'
-    const newName = 'translated_' + originalName;
+    // Determine extension
+    let ext = originalName.split('.').pop();
+    // If blob type suggests a different extension, use it
+    if (blob.type === 'application/pdf') ext = 'pdf';
+    if (blob.type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') ext = 'docx';
+    if (blob.type === 'text/plain') ext = 'txt';
+
+    // Remove original extension from name if we are appending a new one
+    const nameWithoutExt = originalName.substring(0, originalName.lastIndexOf('.'));
+    const newName = `translated_${nameWithoutExt}.${ext}`;
+
     UI.downloadBtn.download = newName;
 }
 

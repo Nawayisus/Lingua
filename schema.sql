@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS providers (
 CREATE TABLE IF NOT EXISTS documents (
     id INT AUTO_INCREMENT PRIMARY KEY,
     filename VARCHAR(255) NOT NULL,
-    file_type VARCHAR(10) NOT NULL,
+    file_type VARCHAR(255) NOT NULL,
     original_lang VARCHAR(10),
     target_lang VARCHAR(10),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP

@@ -55,7 +55,19 @@
                             </select>
                         </div>
                         <div class="col-md-4">
-                            <label class="form-label">Proveedor</label>
+                            <label class="form-label">Formato de Salida</label>
+                            <select class="form-select" id="outputFormat">
+                                <option value="original" selected>Igual al Original</option>
+                                <option value="pdf">PDF (.pdf)</option>
+                                <option value="docx">Word (.docx)</option>
+                                <option value="txt">Texto (.txt)</option>
+                                <!-- EPUB/Images are hard to target generically, keeping simple list -->
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-12">
+                            <label class="form-label">Proveedor de Traducción</label>
                             <select class="form-select" id="providerSelect">
                                 <option value="libretranslate">LibreTranslate (Free)</option>
                                 <!-- More will be added via JS -->
@@ -111,6 +123,8 @@
 <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
 <!-- FileSaver -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+<!-- DOCX.js -->
+<script src="https://unpkg.com/docx@7.1.0/build/index.js"></script>
 
 <!-- App Scripts -->
 <script src="js/translator.js"></script>

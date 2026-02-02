@@ -108,24 +108,118 @@ async function processDocument(file, config, callback) {
     const fileType = file.type;
     const fileName = file.name.toLowerCase();
 
+    let processedBlob = null;
+    let inputType = 'unknown';
+
     try {
+        // 1. Translation Phase (Preserving Format)
         if (fileType === 'text/plain') {
-            return await processTextFile(file, translator, config, callback);
+            inputType = 'txt';
+            processedBlob = await processTextFile(file, translator, config, callback);
         } else if (fileName.endsWith('.docx')) {
-            return await processDocxFile(file, translator, config, callback);
+            inputType = 'docx';
+            processedBlob = await processDocxFile(file, translator, config, callback);
         } else if (fileName.endsWith('.pdf')) {
-            return await processPdfFile(file, translator, config, callback);
+            inputType = 'pdf';
+            processedBlob = await processPdfFile(file, translator, config, callback);
         } else if (fileType.startsWith('image/')) {
-            return await processImageFile(file, translator, config, callback);
+            inputType = 'image';
+            processedBlob = await processImageFile(file, translator, config, callback);
         } else if (fileName.endsWith('.epub')) {
-            return await processEpubFile(file, translator, config, callback);
+            inputType = 'epub';
+            processedBlob = await processEpubFile(file, translator, config, callback);
         } else {
             throw new Error(`Formato no soportado: ${fileType || fileName}`);
         }
+
+        // 2. Conversion Phase (If needed)
+        const targetFormat = config.outputFormat; // original, pdf, docx, txt
+        if (targetFormat !== 'original' && targetFormat !== inputType) {
+            callback(96, `Convirtiendo formato de ${inputType} a ${targetFormat}...`);
+            return await convertFormat(processedBlob, inputType, targetFormat, callback);
+        }
+
+        return processedBlob;
+
     } catch (e) {
         console.error(e);
         throw e;
     }
+}
+
+async function convertFormat(blob, fromType, toType, callback) {
+    // Basic conversion logic matrix
+
+    // To TXT
+    if (toType === 'txt') {
+        if (fromType === 'txt') return blob;
+        // Extracting text from PDF/DOCX blob client-side is hard without re-parsing.
+        // For this version, we will only support robust conversions.
+        // If we just translated it, we might have the text, but the architecture separates translation from conversion.
+        // We will try a simple text extraction if possible or return blob with warning.
+        // Note: Implementing full text extraction from Blob again is heavy.
+        // We will fallback to returning the original for unsupported conversions to avoid breaking flow.
+        console.warn("TXT conversion from complex binary not fully implemented.");
+        return blob;
+    }
+
+    // To PDF
+    if (toType === 'pdf') {
+        if (fromType === 'image') {
+            const pdfDoc = await PDFLib.PDFDocument.create();
+            const imageBytes = await blob.arrayBuffer();
+            let embeddedImage;
+            // Detect mime from blob
+            if (blob.type === 'image/png') embeddedImage = await pdfDoc.embedPng(imageBytes);
+            else embeddedImage = await pdfDoc.embedJpg(imageBytes);
+
+            const page = pdfDoc.addPage([embeddedImage.width, embeddedImage.height]);
+            page.drawImage(embeddedImage, {x:0, y:0, width: embeddedImage.width, height: embeddedImage.height});
+            const pdfBytes = await pdfDoc.save();
+            return new Blob([pdfBytes], { type: 'application/pdf' });
+        }
+        if (fromType === 'txt') {
+             const pdfDoc = await PDFLib.PDFDocument.create();
+             const page = pdfDoc.addPage();
+             const text = await blob.text();
+             const timesRomanFont = await pdfDoc.embedFont(PDFLib.StandardFonts.TimesRoman);
+             const fontSize = 12;
+             const { width, height } = page.getSize();
+
+             page.drawText(text, {
+                x: 50,
+                y: height - 4 * fontSize,
+                size: fontSize,
+                font: timesRomanFont,
+                maxWidth: width - 100,
+                lineHeight: fontSize + 2
+             });
+             const pdfBytes = await pdfDoc.save();
+             return new Blob([pdfBytes], { type: 'application/pdf' });
+        }
+    }
+
+    // To DOCX
+    if (toType === 'docx') {
+        if (fromType === 'txt') {
+             if (!window.docx) throw new Error("Librería DOCX no cargada.");
+             const text = await blob.text();
+             const doc = new docx.Document({
+                 sections: [{
+                     properties: {},
+                     children: [
+                         new docx.Paragraph({ children: [new docx.TextRun(text)] })
+                     ]
+                 }]
+             });
+             return await docx.Packer.toBlob(doc);
+        }
+    }
+
+    // Fallback
+    console.warn(`Conversión de ${fromType} a ${toType} no soportada en cliente.`);
+    alert(`No es posible convertir de ${fromType} a ${toType} en el navegador. Se descargará en formato original.`);
+    return blob;
 }
 
 // --- Specific File Handlers (Placeholders for now) ---
