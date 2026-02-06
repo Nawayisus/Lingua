@@ -76,14 +76,14 @@
                     </div>
 
                     <!-- Upload Area -->
-                    <div class="upload-area p-5 text-center border rounded bg-light" id="dropZone">
+                    <label class="upload-area p-5 text-center border rounded bg-light d-block" id="dropZone" for="fileInput">
                         <i class="fas fa-cloud-upload-alt fa-3x text-primary mb-3"></i>
                         <h5>Arrastra y suelta tu archivo aquí</h5>
                         <p class="text-muted">PDF, DOCX, JPG, PNG, EPUB</p>
                         <!-- Supported formats: PDF, DOCX, Images, EPUB. .doc/mobi/azw3 removed due to client-side limitations -->
-                        <input type="file" id="fileInput" class="d-none" accept=".pdf,.docx,.jpg,.jpeg,.png,.epub">
-                        <button class="btn btn-primary" onclick="document.getElementById('fileInput').click()">Seleccionar Archivo</button>
-                    </div>
+                        <input type="file" id="fileInput" class="visually-hidden" accept=".pdf,.docx,.jpg,.jpeg,.png,.epub">
+                        <span class="btn btn-primary">Seleccionar Archivo</span>
+                    </label>
 
                     <!-- Progress Area -->
                     <div id="progressArea" class="mt-4 d-none">
