@@ -30,7 +30,7 @@
                     <!-- Settings Row -->
                     <div class="row g-3 mb-4">
                         <div class="col-md-4">
-                            <label class="form-label">Idioma Original</label>
+                            <label class="form-label" for="sourceLang">Idioma Original</label>
                             <select class="form-select" id="sourceLang">
                                 <option value="auto">Detectar Automático</option>
                                 <option value="en">Inglés</option>
@@ -44,7 +44,7 @@
                             </select>
                         </div>
                         <div class="col-md-4">
-                            <label class="form-label">Idioma Destino</label>
+                            <label class="form-label" for="targetLang">Idioma Destino</label>
                             <select class="form-select" id="targetLang">
                                 <option value="es" selected>Español</option>
                                 <option value="en">Inglés</option>
@@ -55,7 +55,7 @@
                             </select>
                         </div>
                         <div class="col-md-4">
-                            <label class="form-label">Formato de Salida</label>
+                            <label class="form-label" for="outputFormat">Formato de Salida</label>
                             <select class="form-select" id="outputFormat">
                                 <option value="original" selected>Igual al Original</option>
                                 <option value="pdf">PDF (.pdf)</option>
@@ -67,7 +67,7 @@
                     </div>
                     <div class="row g-3 mb-4">
                         <div class="col-md-12">
-                            <label class="form-label">Proveedor de Traducción</label>
+                            <label class="form-label" for="providerSelect">Proveedor de Traducción</label>
                             <select class="form-select" id="providerSelect">
                                 <option value="libretranslate">LibreTranslate (Free)</option>
                                 <!-- More will be added via JS -->
@@ -76,14 +76,14 @@
                     </div>
 
                     <!-- Upload Area -->
-                    <div class="upload-area p-5 text-center border rounded bg-light" id="dropZone">
+                    <label class="upload-area p-5 text-center border rounded bg-light d-block" id="dropZone" for="fileInput">
                         <i class="fas fa-cloud-upload-alt fa-3x text-primary mb-3"></i>
                         <h5>Arrastra y suelta tu archivo aquí</h5>
                         <p class="text-muted">PDF, DOCX, JPG, PNG, EPUB</p>
                         <!-- Supported formats: PDF, DOCX, Images, EPUB. .doc/mobi/azw3 removed due to client-side limitations -->
-                        <input type="file" id="fileInput" class="d-none" accept=".pdf,.docx,.jpg,.jpeg,.png,.epub">
-                        <button class="btn btn-primary" onclick="document.getElementById('fileInput').click()">Seleccionar Archivo</button>
-                    </div>
+                        <input type="file" id="fileInput" class="visually-hidden" accept=".pdf,.docx,.jpg,.jpeg,.png,.epub">
+                        <span class="btn btn-primary">Seleccionar Archivo</span>
+                    </label>
 
                     <!-- Progress Area -->
                     <div id="progressArea" class="mt-4 d-none">
