@@ -8,6 +8,10 @@
     border-color: #0d6efd !important;
     background-color: #f8f9fa;
 }
+.upload-area:focus-within {
+    border-color: #0d6efd !important;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
 #logConsole {
     background: #f8f9fa;
     padding: 5px;
