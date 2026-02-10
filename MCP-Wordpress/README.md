@@ -1,13 +1,15 @@
-# Perplexity to WordPress Bridge (MCP)
+# MCP-Wordpress
 
 [Español](#español) | [English](#english)
+
+Repositorio: [https://github.com/Nawayisus/MCP-Wordpress](https://github.com/Nawayisus/MCP-Wordpress)
 
 ---
 
 <a name="español"></a>
 # Español
 
-Este proyecto te permite conectar la aplicación de escritorio de Perplexity (o cualquier cliente compatible con MCP) a tu sitio web de WordPress.
+Este proyecto (anteriormente conocido como Perplexity to WordPress Bridge) te permite conectar la aplicación de escritorio de Perplexity (o cualquier cliente compatible con MCP) a tu sitio web de WordPress.
 Utiliza un **Enfoque Híbrido (Opción B)** para garantizar la máxima estabilidad y rendimiento en Windows:
 
 1.  **Plugin de WordPress (`wordpress-plugin/`)**:
@@ -62,7 +64,7 @@ Si ves marcas de verificación verdes (✅), todo está funcionando correctament
 3.  Añade un nuevo servidor:
     -   **Name**: WordPress Bridge
     -   **Command**: `python`
-    -   **Arguments**: `ruta/absoluta/a/perplexity-wordpress-bridge/local-client/bridge.py`
+    -   **Arguments**: `ruta/absoluta/a/MCP-Wordpress/local-client/bridge.py`
     -   (Reemplaza `ruta/absoluta/a/...` con la ruta completa real al archivo en tu computadora).
 
 ## Uso
@@ -133,7 +135,7 @@ If you see ✅ checks, everything is working correctly.
 3.  Add a new server:
     -   **Name**: WordPress Bridge
     -   **Command**: `python`
-    -   **Arguments**: `absolute/path/to/perplexity-wordpress-bridge/local-client/bridge.py`
+    -   **Arguments**: `absolute/path/to/MCP-Wordpress/local-client/bridge.py`
     -   (Replace `absolute/path/to/...` with the actual full path to the file on your computer).
 
 ## Usage
