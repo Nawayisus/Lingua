@@ -1,0 +1,33 @@
+[Tue Feb 10 00:09:06 2026] PHP 8.3.6 Development Server (http://localhost:8000) started
+[Tue Feb 10 00:09:37 2026] [::1]:54090 Accepted
+[Tue Feb 10 00:09:37 2026] [::1]:54090 [200]: GET /
+[Tue Feb 10 00:09:37 2026] [::1]:54090 Closing
+[Tue Feb 10 00:09:37 2026] [::1]:54104 Accepted
+[Tue Feb 10 00:09:37 2026] [::1]:54106 Accepted
+[Tue Feb 10 00:09:37 2026] [::1]:54120 Accepted
+[Tue Feb 10 00:09:37 2026] [::1]:54104 [200]: GET /css/style.css
+[Tue Feb 10 00:09:37 2026] [::1]:54104 Closing
+[Tue Feb 10 00:09:37 2026] [::1]:54106 [200]: GET /js/translator.js
+[Tue Feb 10 00:09:37 2026] [::1]:54106 Closing
+[Tue Feb 10 00:09:37 2026] [::1]:54120 [200]: GET /js/app.js
+[Tue Feb 10 00:09:37 2026] [::1]:54120 Closing
+[Tue Feb 10 00:09:38 2026] [::1]:54126 Accepted
+[Tue Feb 10 00:09:38 2026] Database connection failed: SQLSTATE[HY000] [2002] No such file or directory
+[Tue Feb 10 00:09:38 2026] [::1]:54126 [200]: GET /api/get_providers.php
+[Tue Feb 10 00:09:38 2026] [::1]:54126 Closing
+[Tue Feb 10 00:10:47 2026] [::1]:57046 Accepted
+[Tue Feb 10 00:10:47 2026] [::1]:57046 [200]: GET /
+[Tue Feb 10 00:10:47 2026] [::1]:57046 Closing
+[Tue Feb 10 00:10:47 2026] [::1]:57054 Accepted
+[Tue Feb 10 00:10:47 2026] [::1]:57056 Accepted
+[Tue Feb 10 00:10:47 2026] [::1]:57070 Accepted
+[Tue Feb 10 00:10:47 2026] [::1]:57054 [200]: GET /css/style.css
+[Tue Feb 10 00:10:47 2026] [::1]:57054 Closing
+[Tue Feb 10 00:10:47 2026] [::1]:57056 [200]: GET /js/translator.js
+[Tue Feb 10 00:10:47 2026] [::1]:57070 [200]: GET /js/app.js
+[Tue Feb 10 00:10:47 2026] [::1]:57056 Closing
+[Tue Feb 10 00:10:47 2026] [::1]:57070 Closing
+[Tue Feb 10 00:10:47 2026] [::1]:57074 Accepted
+[Tue Feb 10 00:10:47 2026] Database connection failed: SQLSTATE[HY000] [2002] No such file or directory
+[Tue Feb 10 00:10:47 2026] [::1]:57074 [200]: GET /api/get_providers.php
+[Tue Feb 10 00:10:47 2026] [::1]:57074 Closing
