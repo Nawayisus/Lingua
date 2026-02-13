@@ -30,7 +30,7 @@
                     <!-- Settings Row -->
                     <div class="row g-3 mb-4">
                         <div class="col-md-4">
-                            <label class="form-label">Idioma Original</label>
+                            <label class="form-label" for="sourceLang">Idioma Original</label>
                             <select class="form-select" id="sourceLang">
                                 <option value="auto">Detectar Automático</option>
                                 <option value="en">Inglés</option>
@@ -44,7 +44,7 @@
                             </select>
                         </div>
                         <div class="col-md-4">
-                            <label class="form-label">Idioma Destino</label>
+                            <label class="form-label" for="targetLang">Idioma Destino</label>
                             <select class="form-select" id="targetLang">
                                 <option value="es" selected>Español</option>
                                 <option value="en">Inglés</option>
@@ -55,7 +55,7 @@
                             </select>
                         </div>
                         <div class="col-md-4">
-                            <label class="form-label">Formato de Salida</label>
+                            <label class="form-label" for="outputFormat">Formato de Salida</label>
                             <select class="form-select" id="outputFormat">
                                 <option value="original" selected>Igual al Original</option>
                                 <option value="pdf">PDF (.pdf)</option>
@@ -67,7 +67,7 @@
                     </div>
                     <div class="row g-3 mb-4">
                         <div class="col-md-12">
-                            <label class="form-label">Proveedor de Traducción</label>
+                            <label class="form-label" for="providerSelect">Proveedor de Traducción</label>
                             <select class="form-select" id="providerSelect">
                                 <option value="libretranslate">LibreTranslate (Free)</option>
                                 <!-- More will be added via JS -->
@@ -89,7 +89,7 @@
                     <div id="progressArea" class="mt-4 d-none">
                         <h6 id="statusText">Procesando...</h6>
                         <div class="progress">
-                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%" id="progressBar"></div>
+                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-label="Progreso de traducción" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" style="width: 0%" id="progressBar"></div>
                         </div>
                         <div class="mt-2 text-muted small" id="logConsole" style="max-height: 100px; overflow-y: auto; font-family: monospace;"></div>
                     </div>

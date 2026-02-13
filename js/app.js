@@ -101,6 +101,7 @@ function log(message) {
 
 function updateProgress(percent, text) {
     UI.progressBar.style.width = `${percent}%`;
+    UI.progressBar.setAttribute('aria-valuenow', percent);
     if (text) UI.statusText.textContent = text;
 }
 
