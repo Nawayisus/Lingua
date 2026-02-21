@@ -14,9 +14,30 @@ const UI = {
     logConsole: document.getElementById('logConsole'),
     resultArea: document.getElementById('resultArea'),
     downloadBtn: document.getElementById('downloadBtn'),
+    alertPlaceholder: document.getElementById('alertPlaceholder'),
 };
 
 let selectedFile = null;
+
+window.showAlert = (message, type = 'danger') => {
+    const wrapper = document.createElement('div');
+    wrapper.innerHTML = [
+        `<div class="alert alert-${type} alert-dismissible fade show" role="alert">`,
+        `   <div class="alert-message"></div>`,
+        '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+        '</div>'
+    ].join('');
+
+    wrapper.querySelector('.alert-message').textContent = message;
+
+    if (UI.alertPlaceholder) {
+        UI.alertPlaceholder.innerHTML = '';
+        UI.alertPlaceholder.append(wrapper.firstChild);
+    } else {
+        console.warn('Alert placeholder missing');
+        alert(message);
+    }
+};
 
 function initApp() {
     loadProviders();
@@ -150,7 +171,7 @@ async function startProcessing(file) {
         log(`ERROR: ${error.message}`);
         updateProgress(0, "Error");
         console.error(error);
-        alert("Ocurrió un error: " + error.message);
+        window.showAlert("Ocurrió un error: " + error.message, 'danger');
         // Show upload again
         UI.dropZone.classList.remove('d-none');
     }

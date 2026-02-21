@@ -218,7 +218,11 @@ async function convertFormat(blob, fromType, toType, callback) {
 
     // Fallback
     console.warn(`Conversión de ${fromType} a ${toType} no soportada en cliente.`);
-    alert(`No es posible convertir de ${fromType} a ${toType} en el navegador. Se descargará en formato original.`);
+    if (window.showAlert) {
+        window.showAlert(`No es posible convertir de ${fromType} a ${toType} en el navegador. Se descargará en formato original.`, 'warning');
+    } else {
+        alert(`No es posible convertir de ${fromType} a ${toType} en el navegador. Se descargará en formato original.`);
+    }
     return blob;
 }
 
