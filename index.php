@@ -27,6 +27,8 @@
                 </div>
                 <div class="card-body">
 
+                    <div id="alertPlaceholder"></div>
+
                     <!-- Settings Row -->
                     <div class="row g-3 mb-4">
                         <div class="col-md-4">
